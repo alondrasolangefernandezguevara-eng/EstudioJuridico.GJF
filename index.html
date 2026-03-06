@@ -1,312 +1,385 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudio Jurídico Gigena Fernández y Asociados</title>
+    <title>Gigena Fernández & Asociados</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bordo: #800020;
-            --bordo-hover: #5a0016;
-            --dorado: #c5a059;
+            --bordo: #720e1a;
+            --bordo-light: #8b1a27;
+            --dorado: #a68966;
+            --blanco: #ffffff;
         }
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--blanco);
+            color: #2d2d2d;
+            overflow-x: hidden;
         }
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .hero-section {
-            position: relative;
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-        .themis-bg {
-            position: absolute;
+
+        /* Franja Bordó Superior */
+        .nav-main {
+            background-color: var(--bordo);
+            color: white;
+            padding: 15px 25px;
+            position: sticky;
             top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 60px;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.15;
-            filter: blur(8px);
-            background: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
-            animation: slowZoom 30s infinite alternate linear;
-        }
-        @keyframes slowZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.2); }
-        }
-
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 320px;
-            height: 100%;
-            background: var(--bordo);
-            z-index: 1000;
-            transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-        }
-        .side-menu.active { right: 0; }
-
-        .area-card {
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            height: 100%;
-            display: flex;
+            height: calc(100vh - 60px);
+            background: rgba(114, 14, 26, 0.98);
+            z-index: 999;
             flex-direction: column;
-            background: #fff;
-        }
-        .area-card:hover {
-            border-color: var(--bordo);
-            box-shadow: 0 10px 20px rgba(128, 0, 32, 0.1);
-            transform: translateY(-5px);
-        }
-        .area-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
-        .area-card.active .area-details {
-            max-height: 800px;
-        }
-        .area-card.active .chevron-icon {
-            transform: rotate(180deg);
-        }
-
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25d366;
-            color: white;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 35px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 998;
-            transition: transform 0.3s;
+            gap: 25px;
         }
-        .whatsapp-btn:hover { transform: scale(1.1); }
 
-        .image-frame {
+        .menu-overlay a {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
             position: relative;
-            padding: 12px;
-            background: white;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border-radius: 2px;
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
+                        url('https://www.svgrepo.com/show/36829/lady-justice.svg');
+            background-size: 400px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .btn-consulta {
+            background-color: var(--bordo);
+            color: white;
+            padding: 20px 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            transition: all 0.3s;
+            border: 2px solid var(--bordo);
+        }
+
+        .btn-consulta:hover {
+            background-color: white;
+            color: var(--bordo);
+        }
+
+        /* NUEVAS ÁREAS DE PRÁCTICA (Diseño de Tarjetas) */
+        .area-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .area-card {
+            background: #fdfdfd;
             border: 1px solid #eee;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .area-card:hover {
+            border-color: var(--bordo);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .area-card i {
+            font-size: 2.5rem;
+            color: var(--bordo);
+            margin-bottom: 20px;
+        }
+
+        .area-card h3 {
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        .area-details {
+            display: none;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: left;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            width: 100%;
+        }
+
+        .area-card.active .area-details {
+            display: block;
+        }
+
+        /* Opiniones */
+        .opinion-card {
+            background: #fff;
+            border-left: 4px solid var(--bordo);
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        /* Floating UI */
+        .wa-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .faq-bubble {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: white;
+            border: 1px solid var(--bordo);
+            padding: 8px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+            z-index: 1001;
+        }
+
+        .map-box {
+            width: 100%;
+            height: 350px;
+            border: 1px solid #ddd;
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body>
 
-    <header class="bg-white border-b-4 border-[#800020] py-3 px-6 md:px-12 fixed w-full top-0 z-50 flex justify-between items-center shadow-md">
-        <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-[#800020] rounded-sm flex items-center justify-center text-white font-bold text-xl">GF</div>
-            <div>
-                <h1 class="text-[#800020] text-lg md:text-xl font-bold uppercase tracking-tight leading-none">Estudio Jurídico</h1>
-                <p class="text-[10px] md:text-xs tracking-widest text-gray-500 uppercase mt-1">Gigena Fernández y Asociados</p>
-            </div>
-        </div>
-        <button onclick="toggleMenu()" class="text-[#800020] text-3xl p-2 hover:opacity-70 transition">
+    <!-- Navegación -->
+    <div class="nav-main flex justify-between items-center">
+        <div class="font-bold text-lg tracking-tighter">GIGENA FERNÁNDEZ & ASOC.</div>
+        <div class="cursor-pointer text-2xl" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
-        </button>
+        </div>
+    </div>
+
+    <!-- Menú -->
+    <div id="mobile-menu" class="menu-overlay">
+        <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+        <a href="#equipo" onclick="toggleMenu()">Equipo</a>
+        <a href="#areas" onclick="toggleMenu()">Áreas</a>
+        <a href="#opiniones" onclick="toggleMenu()">Opiniones</a>
+        <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+    </div>
+
+    <!-- Hero -->
+    <header id="inicio" class="hero">
+        <div class="max-w-4xl mx-auto px-4">
+            <h1 class="text-3xl md:text-5xl font-black text-[#720e1a] mb-6 uppercase">Estudio Jurídico Gigena Fernández y Asociados</h1>
+            <p class="text-lg md:text-xl text-gray-700 leading-relaxed font-medium mb-8">
+                Asesoría Jurídica Integral, Excelencia Jurídica y compromiso absoluto en la defensa de sus derechos.
+            </p>
+            <a href="https://wa.me/542216261845" class="btn-consulta">Agendar consulta</a>
+        </div>
     </header>
 
-    <div id="overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/50 z-[999] hidden backdrop-blur-sm"></div>
-    <nav id="sideMenu" class="side-menu p-10 flex flex-col gap-8 text-white">
-        <div class="flex justify-between items-center mb-4">
-            <span class="font-bold tracking-widest border-b-2 border-white/30 pb-1">MENÚ</span>
-            <button onclick="toggleMenu()" class="text-4xl">×</button>
-        </div>
-        <a href="#inicio" onclick="toggleMenu()" class="flex items-center gap-4 hover:translate-x-2 transition-transform uppercase text-sm tracking-widest"><i class="fas fa-home w-5"></i> Inicio</a>
-        <a href="#equipo" onclick="toggleMenu()" class="flex items-center gap-4 hover:translate-x-2 transition-transform uppercase text-sm tracking-widest"><i class="fas fa-user-tie w-5"></i> Equipo</a>
-        <a href="#areas" onclick="toggleMenu()" class="flex items-center gap-4 hover:translate-x-2 transition-transform uppercase text-sm tracking-widest"><i class="fas fa-balance-scale w-5"></i> Áreas</a>
-        <a href="#opiniones" onclick="toggleMenu()" class="flex items-center gap-4 hover:translate-x-2 transition-transform uppercase text-sm tracking-widest"><i class="fas fa-comment w-5"></i> Opiniones</a>
-        <a href="#contacto" onclick="toggleMenu()" class="flex items-center gap-4 hover:translate-x-2 transition-transform uppercase text-sm tracking-widest"><i class="fas fa-phone w-5"></i> Contacto</a>
-    </nav>
-
-    <section id="inicio" class="hero-section">
-        <div class="themis-bg"></div>
-        <div class="relative z-10 max-w-5xl mx-auto text-center px-6">
-            <h2 class="text-4xl md:text-7xl font-bold text-[#800020] mb-6 uppercase tracking-tight leading-tight">
-                Estudio Jurídico <br> <span class="text-black">Gigena Fernández</span> <br> y Asociados
-            </h2>
-            <div class="h-1 w-24 bg-[#800020] mx-auto mb-8"></div>
-            <p class="text-xl md:text-3xl font-semibold text-gray-700 mb-4 uppercase tracking-wider">Asesoría Jurídica Integral</p>
-            <p class="text-base md:text-xl text-gray-500 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Excelencia Jurídica y compromiso absoluto en la defensa de sus derechos, brindando soluciones legales estratégicas con profesionalismo, confidencialidad y máxima dedicación.
-            </p>
-            <a href="https://wa.me/542216261845" target="_blank" class="inline-block bg-[#800020] text-white px-10 py-5 rounded-sm font-bold shadow-xl hover:bg-[#5a0016] transition-all transform hover:-translate-y-1 uppercase tracking-widest">
-                Agendar Consulta <i class="fab fa-whatsapp ml-2"></i>
-            </a>
-        </div>
-    </section>
-
-    <section id="equipo" class="py-24 bg-gray-50 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-bold text-center text-[#800020] mb-16 uppercase tracking-widest">Nuestro Equipo</h2>
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="w-full lg:w-1/2 flex justify-center">
-                    <div class="image-frame max-w-sm">
-                        <img src="FB_IMG_1772776839340.jpg" alt="Dr. Maximiliano Gigena" class="w-full rounded-sm shadow-inner">
-                    </div>
-                </div>
-                <div class="w-full lg:w-1/2 text-center lg:text-left">
-                    <p class="text-[#800020] font-bold uppercase tracking-widest mb-2">Director</p>
-                    <h3 class="text-3xl md:text-4xl font-bold text-black mb-6 uppercase">Dr. Maximiliano Gigena</h3>
-                    <div class="h-1 w-20 bg-[#800020] mb-8 mx-auto lg:mx-0"></div>
-                    <p class="text-lg md:text-xl leading-relaxed text-gray-600 font-light">
-                        Bajo la dirección del <span class="font-bold text-[#800020]">Dr. Maximiliano Gigena</span>, nuestro estudio está conformado por profesionales altamente capacitados, comprometidos con la excelencia jurídica y la defensa integral de cada cliente.
-                    </p>
-                    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-4 bg-white shadow-sm border-l-4 border-[#800020]"><p class="font-bold uppercase text-sm tracking-wider">Profesionalismo</p></div>
-                        <div class="p-4 bg-white shadow-sm border-l-4 border-[#800020]"><p class="font-bold uppercase text-sm tracking-wider">Excelencia</p></div>
-                    </div>
-                </div>
+    <!-- Equipo -->
+    <section id="equipo" class="py-16 px-6 max-w-6xl mx-auto">
+        <h2 class="text-2xl font-black mb-10 uppercase border-b-4 border-[#720e1a] inline-block">Nuestro Equipo</h2>
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+            <img src="FB_IMG_1772776839340.jpg" alt="Dr. Maximiliano Gigena" class="w-full rounded shadow-xl">
+            <div>
+                <h3 class="text-xl font-bold text-[#720e1a] mb-4 uppercase">Dirección: Dr. Maximiliano Gigena</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Nuestro estudio está conformado por profesionales altamente capacitados, comprometidos con la excelencia jurídica y la defensa integral de cada cliente. Brindamos soluciones legales estratégicas con profesionalismo y máxima dedicación.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="areas" class="py-24 bg-white px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-[#800020] uppercase tracking-widest mb-4">Áreas Practicadas</h2>
-                <p class="text-gray-500 uppercase text-xs tracking-[0.3em]">Haga clic en un área para ver detalles</p>
-            </div>
+    <!-- Áreas de Práctica (NUEVO DISEÑO) -->
+    <section id="areas" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-black mb-4 uppercase">Áreas Practicadas</h2>
+            <p class="text-gray-500 mb-12 uppercase text-xs tracking-widest font-bold">Toca cada área para ver los detalles</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-                <div class="area-card p-8" onclick="this.classList.toggle('active')">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fas fa-users text-4xl text-[#800020]"></i>
-                        <i class="fas fa-chevron-down chevron-icon text-gray-400 transition-transform"></i>
-                    </div>
-                    <h3 class="text-xl font-bold uppercase mb-3 tracking-tight">Derecho de Familia</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Asesoramiento integral en conflictos familiares y civiles con enfoque humano.</p>
-                    <div class="area-details text-gray-600 space-y-2 text-sm border-t mt-6 pt-6">
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Divorcios</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Alimentos y Filiación</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Régimen de comunicación</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Violencia familiar</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Uniones convivenciales</p>
+            <div class="area-grid">
+                <!-- Familia -->
+                <div class="area-card" onclick="toggleCard(this)">
+                    <i class="fas fa-users"></i>
+                    <h3>Derecho de Familia</h3>
+                    <div class="area-details">
+                        Divorcios, alimentos, régimen de comunicación, adopciones, filiación, cambio de apellido, uniones convivenciales, liquidación de sociedad conyugal, violencia familiar, compensación económica, tutela y curatela.
                     </div>
                 </div>
 
-                <div class="area-card p-8" onclick="this.classList.toggle('active')">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fas fa-scroll text-4xl text-[#800020]"></i>
-                        <i class="fas fa-chevron-down chevron-icon text-gray-400 transition-transform"></i>
-                    </div>
-                    <h3 class="text-xl font-bold uppercase mb-3 tracking-tight">Sucesiones</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Gestión eficiente de herencias, declaratorias y protección del patrimonio.</p>
-                    <div class="area-details text-gray-600 space-y-2 text-sm border-t mt-6 pt-6">
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Sucesiones ab intestato</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Testamentarias</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Partición de bienes</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Tracto abreviado</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Inscripción de declaratorias</p>
+                <!-- Sucesiones -->
+                <div class="area-card" onclick="toggleCard(this)">
+                    <i class="fas fa-scroll"></i>
+                    <h3>Sucesiones</h3>
+                    <div class="area-details">
+                        Sucesiones ab intestato y testamentarias, declaratoria de herederos, partición de bienes, administración de herencias, inscripción, tracto abreviado, reclamo decano locativo.
                     </div>
                 </div>
 
-                <div class="area-card p-8" onclick="this.classList.toggle('active')">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fas fa-briefcase text-4xl text-[#800020]"></i>
-                        <i class="fas fa-chevron-down chevron-icon text-gray-400 transition-transform"></i>
+                <!-- Laboral -->
+                <div class="area-card" onclick="toggleCard(this)">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Derecho Laboral</h3>
+                    <div class="area-details">
+                        Despidos directos/indirectos, trabajo no registrado (en negro), diferencias salariales, accidentes (ART), acoso laboral e intercambio telegráfico.
                     </div>
-                    <h3 class="text-xl font-bold uppercase mb-3 tracking-tight">Derecho Laboral</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Defensa de los derechos del trabajador y asesoría a empleadores.</p>
-                    <div class="area-details text-gray-600 space-y-2 text-sm border-t mt-6 pt-6">
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Despidos e Indemnizaciones</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Trabajo no registrado</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Accidentes de trabajo (ART)</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Acoso laboral</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Intercambio telegráfico</p>
+                </div>
+
+                <!-- Accidentes -->
+                <div class="area-card" onclick="toggleCard(this)">
+                    <i class="fas fa-car-burst"></i>
+                    <h3>Accidentes de Tránsito</h3>
+                    <div class="area-details">
+                        Reclamos ante compañías de seguros, máxima indemnización por daños físicos y materiales, lesiones y secuelas, incapacidad, lucro cesante y mediaciones.
+                    </div>
+                </div>
+
+                <!-- Comercial -->
+                <div class="area-card" onclick="toggleCard(this)">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Derecho Comercial</h3>
+                    <div class="area-details">
+                        Asesoramiento integral, contratos, constitución de SRL/SA/SAS, cobro de cheques y pagarés, concursos y quiebras, defensa del consumidor y registro de marcas.
+                    </div>
+                </div>
+
+                <!-- Previsional -->
+                <div class="area-card" onclick="toggleCard(this)">
+                    <i class="fas fa-id-card"></i>
+                    <h3>Previsional</h3>
+                    <div class="area-details">
+                        Gestión de jubilaciones y pensiones (invalidez/fallecimiento), moratorias, reconocimiento de servicios, reajustes ante ANSES y amparos.
+                    </div>
+                </div>
+
+                <!-- Salud -->
+                <div class="area-card" onclick="toggleCard(this)">
+                    <i class="fas fa-hospital-user"></i>
+                    <h3>Amparo por Salud</h3>
+                    <div class="area-details">
+                        Amparos contra prepagas y obras sociales, medicamentos de alto costo, prótesis, tratamientos de discapacidad, fertilización asistida y geriátricos.
+                    </div>
+                </div>
+
+                <!-- Reales -->
+                <div class="area-card" onclick="toggleCard(this)">
+                    <i class="fas fa-home"></i>
+                    <h3>Derechos Reales</h3>
+                    <div class="area-details">
+                        Juicios de usucapión, escrituración, desalojos, división de condominios y regularización de títulos.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="opiniones" class="py-24 bg-gray-50 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-bold text-center text-[#800020] mb-16 uppercase tracking-widest">Opiniones</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-8 bg-white shadow-sm border-t-4 border-[#800020]">
-                    <div class="text-[#800020] mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-600 italic mb-6">"Excelente atención y compromiso. El Dr. Gigena me brindó soluciones claras desde la primera consulta."</p>
-                    <p class="font-bold text-black uppercase text-xs tracking-widest">— María Inés Castro</p>
-                </div>
-                <div class="p-8 bg-white shadow-sm border-t-4 border-[#800020]">
-                    <div class="text-[#800020] mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-600 italic mb-6">"Profesionalismo absoluto. Muy recomendables por su trato humano y eficacia en los resultados."</p>
-                    <p class="font-bold text-black uppercase text-xs tracking-widest">— Roberto Benítez</p>
-                </div>
-                <div class="p-8 bg-white shadow-sm border-t-4 border-[#800020]">
-                    <div class="text-[#800020] mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="text-gray-600 italic mb-6">"Muy agradecida por la gestión de mi accidente. El acompañamiento fue constante en todo momento."</p>
-                    <p class="font-bold text-black uppercase text-xs tracking-widest">— Laura Fernández</p>
-                </div>
-            </div>
+    <!-- Opiniones -->
+    <section id="opiniones" class="py-16 px-6 max-w-4xl mx-auto">
+        <h2 class="text-2xl font-black mb-10 uppercase text-center">Opiniones</h2>
+        <div class="opinion-card">
+            <p class="italic text-gray-600 mb-3">"Excelente atención y compromiso absoluto. El Dr. Maximiliano resolvió mi caso con una profesionalidad admirable. Muy agradecida por el trato humano."</p>
+            <p class="font-bold text-[#720e1a] uppercase text-sm">María Rodríguez</p>
+        </div>
+        <div class="opinion-card">
+            <p class="italic text-gray-600 mb-3">"Profesionalismo absoluto. Gracias a su asesoramiento pudimos resolver una sucesión compleja en tiempo récord. Totalmente recomendados."</p>
+            <p class="font-bold text-[#720e1a] uppercase text-sm">Juan Manuel Gómez</p>
+        </div>
+        <div class="opinion-card">
+            <p class="italic text-gray-600 mb-3">"Excelente servicio en derecho laboral. Transparencia y dedicación constante. No dudaría en volver a contratarlos."</p>
+            <p class="font-bold text-[#720e1a] uppercase text-sm">Roberto Santillán</p>
         </div>
     </section>
 
-    <footer id="contacto" class="bg-black text-white py-24 px-6">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div class="space-y-10">
-                <h2 class="text-4xl font-bold uppercase tracking-widest border-l-4 border-[#800020] pl-6">Contacto</h2>
-                <div class="space-y-6 text-lg font-light">
-                    <p class="flex items-center gap-4"><i class="fas fa-phone-alt text-[#800020]"></i> 221-626-1845</p>
-                    <p class="flex items-start gap-4"><i class="fas fa-map-marker-alt text-[#800020] mt-1"></i> Atención en La Plata y San Miguel del Monte.</p>
-                    <p class="flex items-center gap-4"><i class="fas fa-globe text-[#800020]"></i> Atención Virtual en toda la Prov. de Buenos Aires.</p>
-                    <a href="https://instagram.com/estudiojuridico.gf" target="_blank" class="flex items-center gap-4 hover:text-[#800020] transition">
-                        <i class="fab fa-instagram text-[#800020]"></i> estudiojuridico.gf
-                    </a>
+    <!-- Contacto -->
+    <section id="contacto" class="py-16 bg-white px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-2xl font-black mb-8 uppercase">Contacto</h2>
+                <div class="space-y-4 font-medium">
+                    <p><i class="fab fa-whatsapp text-green-500 mr-2"></i> 221-626-1845</p>
+                    <p><i class="fas fa-map-marker-alt text-red-600 mr-2"></i> Atención en La Plata y San Miguel del Monte</p>
+                    <p><i class="fas fa-laptop mr-2"></i> Atención Virtual en toda la PBA</p>
+                    <p><i class="fab fa-instagram text-pink-500 mr-2"></i> <a href="https://instagram.com/estudiojuridico.gf" class="hover:underline">estudiojuridico.gf</a></p>
                 </div>
                 
-                <div class="p-8 border border-white/10 bg-white/5 rounded-sm text-center">
-                    <p class="text-lg italic font-light mb-4">"Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"</p>
-                    <p class="font-bold uppercase text-xs tracking-[0.2em]">1 Timoteo 2:5</p>
+                <div class="mt-12 p-6 bg-gray-50 border-l-4 border-[#720e1a]">
+                    <p class="italic text-gray-600">"Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"</p>
+                    <p class="font-bold mt-2 text-sm">1 Timoteo 2:5</p>
                 </div>
             </div>
-
-            <div class="w-full h-[450px] rounded-sm overflow-hidden shadow-2xl grayscale hover:grayscale-0 transition duration-700">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104711.1232811776!2d-58.01889415!3d-34.9205233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62b1f00e43d%3A0x840e932f441f5a95!2sLa%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1709800000000!5m2!1ses!2sar" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13084.721204646547!2d-57.962000!3d-34.921389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62b1f00e493%3A0x3db0f6771d9990e!2sPlaza%20Moreno!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
-        <div class="mt-24 text-center text-gray-600 text-[10px] tracking-widest uppercase">
-            © 2026 Estudio Jurídico Gigena Fernández y Asociados.
-        </div>
+    </section>
+
+    <footer class="bg-[#720e1a] text-white py-10 text-center text-xs font-bold uppercase tracking-widest">
+        Estudio Jurídico Gigena Fernández & Asociados
     </footer>
 
-    <a href="https://wa.me/542216261845" target="_blank" class="whatsapp-btn">
+    <!-- Floating -->
+    <div class="faq-bubble">Preguntas Frecuentes ↓</div>
+    <a href="https://wa.me/542216261845" class="wa-float">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
         function toggleMenu() {
-            document.getElementById('sideMenu').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('hidden');
-            document.body.classList.toggle('overflow-hidden');
+            const menu = document.getElementById('mobile-menu');
+            menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function toggleCard(card) {
+            // Cierra las demás
+            document.querySelectorAll('.area-card').forEach(c => {
+                if (c !== card) c.classList.remove('active');
+            });
+            // Abre la actual
+            card.classList.toggle('active');
         }
     </script>
 </body>
 </html>
+
+
