@@ -1,9 +1,10 @@
-  <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gigena Fernández & Asociados</title>
+    <title>Gigena Fernández & Asociados - Especialistas en Contratos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -19,9 +20,10 @@
             background-color: var(--blanco);
             color: #2d2d2d;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Franja Bordó Superior */
+        /* Navegación */
         .nav-main {
             background-color: var(--bordo);
             color: white;
@@ -35,34 +37,24 @@
         .menu-overlay {
             display: none;
             position: fixed;
-            top: 60px;
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 60px);
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
             background: rgba(114, 14, 26, 0.98);
-            z-index: 999;
+            z-index: 1002;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 25px;
         }
 
-        .menu-overlay a {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-decoration: none;
-        }
-
-        /* Hero Section */
+        /* Hero */
         .hero {
             position: relative;
             padding: 100px 20px;
             text-align: center;
             background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), 
                         url('https://www.svgrepo.com/show/36829/lady-justice.svg');
-            background-size: 400px;
+            background-size: 300px;
             background-position: center;
             background-repeat: no-repeat;
         }
@@ -70,12 +62,13 @@
         .btn-consulta {
             background-color: var(--bordo);
             color: white;
-            padding: 20px 40px;
+            padding: 18px 35px;
             font-weight: bold;
             text-transform: uppercase;
             display: inline-block;
             transition: all 0.3s;
             border: 2px solid var(--bordo);
+            cursor: pointer;
         }
 
         .btn-consulta:hover {
@@ -83,7 +76,7 @@
             color: var(--bordo);
         }
 
-        /* NUEVAS ÁREAS DE PRÁCTICA (Diseño de Tarjetas) */
+        /* Áreas de Práctica */
         .area-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -98,11 +91,15 @@
             text-align: center;
             transition: all 0.4s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        /* Estilo especial para la especialidad en Contratos */
+        .area-card.specialty {
+            border: 2px solid var(--bordo);
+            background: #fff9f9;
         }
 
         .area-card:hover {
@@ -122,14 +119,13 @@
             color: #1a1a1a;
             margin-bottom: 10px;
             text-transform: uppercase;
-            font-size: 1.1rem;
         }
 
         .area-details {
             display: none;
             margin-top: 15px;
-            font-size: 0.9rem;
-            color: #666;
+            font-size: 0.95rem;
+            color: #555;
             text-align: left;
             border-top: 1px solid #eee;
             padding-top: 15px;
@@ -140,16 +136,7 @@
             display: block;
         }
 
-        /* Opiniones */
-        .opinion-card {
-            background: #fff;
-            border-left: 4px solid var(--bordo);
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        /* Floating UI */
+        /* UI Flotante */
         .wa-float {
             position: fixed;
             bottom: 20px;
@@ -173,182 +160,200 @@
             right: 20px;
             background: white;
             border: 1px solid var(--bordo);
-            padding: 8px 15px;
-            font-size: 12px;
+            padding: 10px 20px;
+            font-size: 13px;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 30px;
             z-index: 1001;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-transform: uppercase;
         }
 
-        .map-box {
+        /* Modal FAQ */
+        .modal-faq {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
             width: 100%;
-            height: 350px;
-            border: 1px solid #ddd;
+            max-width: 500px;
+            max-height: 80vh;
+            border-radius: 10px;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: var(--bordo);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+            color: #666;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
     <!-- Navegación -->
-    <div class="nav-main flex justify-between items-center">
-        <div class="font-bold text-lg tracking-tighter">GIGENA FERNÁNDEZ & ASOC.</div>
+    <nav class="nav-main flex justify-between items-center">
+        <div class="font-bold text-lg tracking-tighter uppercase">Gigena Fernández & Asoc.</div>
         <div class="cursor-pointer text-2xl" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
         </div>
-    </div>
+    </nav>
 
     <!-- Menú -->
     <div id="mobile-menu" class="menu-overlay">
-        <a href="#inicio" onclick="toggleMenu()">Inicio</a>
-        <a href="#equipo" onclick="toggleMenu()">Equipo</a>
-        <a href="#areas" onclick="toggleMenu()">Áreas</a>
-        <a href="#opiniones" onclick="toggleMenu()">Opiniones</a>
-        <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+        <div class="absolute top-5 right-5 text-3xl text-white cursor-pointer" onclick="toggleMenu()">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="#inicio" onclick="toggleMenu()" class="text-white text-xl uppercase font-bold">Inicio</a>
+        <a href="#equipo" onclick="toggleMenu()" class="text-white text-xl uppercase font-bold">Equipo</a>
+        <a href="#areas" onclick="toggleMenu()" class="text-white text-xl uppercase font-bold">Especialidades</a>
+        <a href="#contacto" onclick="toggleMenu()" class="text-white text-xl uppercase font-bold">Contacto</a>
     </div>
 
     <!-- Hero -->
     <header id="inicio" class="hero">
         <div class="max-w-4xl mx-auto px-4">
-            <h1 class="text-3xl md:text-5xl font-black text-[#720e1a] mb-6 uppercase">Estudio Jurídico Gigena Fernández y Asociados</h1>
-            <p class="text-lg md:text-xl text-gray-700 leading-relaxed font-medium mb-8">
-                Asesoría Jurídica Integral, Excelencia Jurídica y compromiso absoluto en la defensa de sus derechos.
+            <h1 class="text-3xl md:text-5xl font-black text-[#720e1a] mb-6 uppercase leading-tight">Estudio Jurídico Gigena Fernández y Asociados</h1>
+            <p class="text-lg md:text-xl text-gray-700 leading-relaxed font-medium mb-10">
+                Especialistas en Derecho Civil, Comercial y de Familia. Excelencia Jurídica en cada contrato.
             </p>
-            <a href="https://wa.me/542216261845" class="btn-consulta">Agendar consulta</a>
+            <a href="https://wa.me/542216261845" class="btn-consulta">Consultar ahora por WhatsApp</a>
         </div>
     </header>
 
     <!-- Equipo -->
     <section id="equipo" class="py-16 px-6 max-w-6xl mx-auto">
-        <h2 class="text-2xl font-black mb-10 uppercase border-b-4 border-[#720e1a] inline-block">Nuestro Equipo</h2>
-        <div class="grid md:grid-cols-2 gap-10 items-center">
+        <h2 class="text-2xl font-black mb-12 uppercase border-b-4 border-[#720e1a] inline-block">Director</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
             <img src="FB_IMG_1772776839340.jpg" alt="Dr. Maximiliano Gigena" class="w-full rounded shadow-xl">
             <div>
-                <h3 class="text-xl font-bold text-[#720e1a] mb-4 uppercase">Dirección: Dr. Maximiliano Gigena</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    Nuestro estudio está conformado por profesionales altamente capacitados, comprometidos con la excelencia jurídica y la defensa integral de cada cliente. Brindamos soluciones legales estratégicas con profesionalismo y máxima dedicación.
+                <h3 class="text-2xl font-bold text-[#720e1a] mb-5 uppercase">Dr. Maximiliano Gigena</h3>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    Lideramos un equipo de profesionales comprometidos con la seguridad jurídica de nuestros clientes. Nuestra prioridad es brindar soluciones preventivas y estratégicas, especialmente en la estructuración de acuerdos y contratos.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Áreas de Práctica (NUEVO DISEÑO) -->
-    <section id="areas" class="py-16 bg-gray-50">
+    <!-- Áreas de Especialización -->
+    <section id="areas" class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-2xl font-black mb-4 uppercase">Áreas Practicadas</h2>
-            <p class="text-gray-500 mb-12 uppercase text-xs tracking-widest font-bold">Toca cada área para ver los detalles</p>
+            <h2 class="text-3xl font-black uppercase mb-4">Nuestras Especialidades</h2>
+            <div class="w-20 h-1 bg-[#720e1a] mx-auto mb-10"></div>
             
             <div class="area-grid">
+                <!-- CONTRATOS - ESPECIALIDAD DESTACADA -->
+                <div class="area-card specialty active" onclick="toggleCard(this)">
+                    <i class="fas fa-file-signature text-3xl"></i>
+                    <h3 class="text-xl">Contratos y Convenios</h3>
+                    <div class="area-details" style="display: block;">
+                        <strong>Somos especialistas en la materia:</strong>
+                        <ul class="list-disc ml-5 mt-2 space-y-1">
+                            <li>Redacción y revisión de contratos civiles y comerciales.</li>
+                            <li>Contratos de locación (alquileres).</li>
+                            <li>Boletos de compraventa.</li>
+                            <li>Convenios de desocupación y desalojos.</li>
+                            <li>Incumplimientos contractuales y daños y perjuicios.</li>
+                            <li>Estructuración de acuerdos empresariales.</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <!-- Familia -->
                 <div class="area-card" onclick="toggleCard(this)">
                     <i class="fas fa-users"></i>
                     <h3>Derecho de Familia</h3>
-                    <div class="area-details">
-                        Divorcios, alimentos, régimen de comunicación, adopciones, filiación, cambio de apellido, uniones convivenciales, liquidación de sociedad conyugal, violencia familiar, compensación económica, tutela y curatela.
-                    </div>
+                    <div class="area-details">Divorcios, alimentos, régimen de comunicación, adopciones, filiación y violencia familiar.</div>
                 </div>
 
                 <!-- Sucesiones -->
                 <div class="area-card" onclick="toggleCard(this)">
                     <i class="fas fa-scroll"></i>
                     <h3>Sucesiones</h3>
-                    <div class="area-details">
-                        Sucesiones ab intestato y testamentarias, declaratoria de herederos, partición de bienes, administración de herencias, inscripción, tracto abreviado, reclamo decano locativo.
-                    </div>
+                    <div class="area-details">Sucesiones ab intestato y testamentarias, declaratoria de herederos y partición de bienes.</div>
                 </div>
 
                 <!-- Laboral -->
                 <div class="area-card" onclick="toggleCard(this)">
                     <i class="fas fa-user-tie"></i>
                     <h3>Derecho Laboral</h3>
-                    <div class="area-details">
-                        Despidos directos/indirectos, trabajo no registrado (en negro), diferencias salariales, accidentes (ART), acoso laboral e intercambio telegráfico.
-                    </div>
+                    <div class="area-details">Despidos, trabajo no registrado, ART, accidentes y enfermedades profesionales.</div>
                 </div>
 
                 <!-- Accidentes -->
                 <div class="area-card" onclick="toggleCard(this)">
                     <i class="fas fa-car-burst"></i>
                     <h3>Accidentes de Tránsito</h3>
-                    <div class="area-details">
-                        Reclamos ante compañías de seguros, máxima indemnización por daños físicos y materiales, lesiones y secuelas, incapacidad, lucro cesante y mediaciones.
-                    </div>
+                    <div class="area-details">Reclamos integrales ante compañías de seguros, lesiones y daños materiales.</div>
                 </div>
 
                 <!-- Comercial -->
                 <div class="area-card" onclick="toggleCard(this)">
                     <i class="fas fa-briefcase"></i>
                     <h3>Derecho Comercial</h3>
-                    <div class="area-details">
-                        Asesoramiento integral, contratos, constitución de SRL/SA/SAS, cobro de cheques y pagarés, concursos y quiebras, defensa del consumidor y registro de marcas.
-                    </div>
+                    <div class="area-details">Sociedades (SRL/SA/SAS), cobro de cheques, pagarés y defensa del consumidor.</div>
                 </div>
 
                 <!-- Previsional -->
                 <div class="area-card" onclick="toggleCard(this)">
                     <i class="fas fa-id-card"></i>
                     <h3>Previsional</h3>
-                    <div class="area-details">
-                        Gestión de jubilaciones y pensiones (invalidez/fallecimiento), moratorias, reconocimiento de servicios, reajustes ante ANSES y amparos.
-                    </div>
+                    <div class="area-details">Jubilaciones, pensiones y reajustes de haberes ante ANSES.</div>
                 </div>
 
                 <!-- Salud -->
                 <div class="area-card" onclick="toggleCard(this)">
                     <i class="fas fa-hospital-user"></i>
                     <h3>Amparo por Salud</h3>
-                    <div class="area-details">
-                        Amparos contra prepagas y obras sociales, medicamentos de alto costo, prótesis, tratamientos de discapacidad, fertilización asistida y geriátricos.
-                    </div>
-                </div>
-
-                <!-- Reales -->
-                <div class="area-card" onclick="toggleCard(this)">
-                    <i class="fas fa-home"></i>
-                    <h3>Derechos Reales</h3>
-                    <div class="area-details">
-                        Juicios de usucapión, escrituración, desalojos, división de condominios y regularización de títulos.
-                    </div>
+                    <div class="area-details">Amparos contra prepagas por falta de cobertura médica o de medicamentos.</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Opiniones -->
-    <section id="opiniones" class="py-16 px-6 max-w-4xl mx-auto">
-        <h2 class="text-2xl font-black mb-10 uppercase text-center">Opiniones</h2>
-        <div class="opinion-card">
-            <p class="italic text-gray-600 mb-3">"Excelente atención y compromiso absoluto. El Dr. Maximiliano resolvió mi caso con una profesionalidad admirable. Muy agradecida por el trato humano."</p>
-            <p class="font-bold text-[#720e1a] uppercase text-sm">María Rodríguez</p>
-        </div>
-        <div class="opinion-card">
-            <p class="italic text-gray-600 mb-3">"Profesionalismo absoluto. Gracias a su asesoramiento pudimos resolver una sucesión compleja en tiempo récord. Totalmente recomendados."</p>
-            <p class="font-bold text-[#720e1a] uppercase text-sm">Juan Manuel Gómez</p>
-        </div>
-        <div class="opinion-card">
-            <p class="italic text-gray-600 mb-3">"Excelente servicio en derecho laboral. Transparencia y dedicación constante. No dudaría en volver a contratarlos."</p>
-            <p class="font-bold text-[#720e1a] uppercase text-sm">Roberto Santillán</p>
         </div>
     </section>
 
     <!-- Contacto -->
-    <section id="contacto" class="py-16 bg-white px-6">
+    <section id="contacto" class="py-20 bg-white px-6">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
             <div>
-                <h2 class="text-2xl font-black mb-8 uppercase">Contacto</h2>
-                <div class="space-y-4 font-medium">
-                    <p><i class="fab fa-whatsapp text-green-500 mr-2"></i> 221-626-1845</p>
-                    <p><i class="fas fa-map-marker-alt text-red-600 mr-2"></i> Atención en La Plata y San Miguel del Monte</p>
-                    <p><i class="fas fa-laptop mr-2"></i> Atención Virtual en toda la PBA</p>
-                    <p><i class="fab fa-instagram text-pink-500 mr-2"></i> <a href="https://instagram.com/estudiojuridico.gf" class="hover:underline">estudiojuridico.gf</a></p>
+                <h2 class="text-2xl font-black mb-10 uppercase">Contacto</h2>
+                <div class="space-y-6 text-lg">
+                    <p><i class="fab fa-whatsapp text-green-500 mr-3 text-2xl"></i> 221-626-1845</p>
+                    <p><i class="fas fa-map-marker-alt text-red-600 mr-3 text-2xl"></i> La Plata | San Miguel del Monte</p>
+                    <p><i class="fab fa-instagram text-pink-500 mr-3 text-2xl"></i> <a href="https://instagram.com/estudiojuridico.gf" target="_blank" class="hover:underline">estudiojuridico.gf</a></p>
                 </div>
                 
-                <div class="mt-12 p-6 bg-gray-50 border-l-4 border-[#720e1a]">
-                    <p class="italic text-gray-600">"Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"</p>
-                    <p class="font-bold mt-2 text-sm">1 Timoteo 2:5</p>
+                <div class="mt-12 p-8 bg-gray-50 border-l-8 border-[#720e1a]">
+                    <p class="italic text-gray-600 text-lg">"Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre"</p>
+                    <p class="font-bold mt-3 text-[#720e1a]">1 Timoteo 2:5</p>
                 </div>
             </div>
-            
-            <div class="map-box">
+            <div class="h-[350px] border rounded shadow-lg overflow-hidden">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13084.721204646547!2d-57.962000!3d-34.921389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62b1f00e493%3A0x3db0f6771d9990e!2sPlaza%20Moreno!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
@@ -358,11 +363,36 @@
         Estudio Jurídico Gigena Fernández & Asociados
     </footer>
 
-    <!-- Floating -->
-    <div class="faq-bubble">Preguntas Frecuentes ↓</div>
-    <a href="https://wa.me/542216261845" class="wa-float">
+    <!-- BOTONES FLOTANTES -->
+    <div class="faq-bubble" onclick="openModal()">Preguntas Frecuentes <i class="fas fa-question-circle ml-1"></i></div>
+    <a href="https://wa.me/542216261845" target="_blank" class="wa-float">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- MODAL FAQ -->
+    <div id="faqModal" class="modal-faq" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6 border-b pb-4">
+                <h2 class="text-xl font-black uppercase text-[#720e1a]">Dudas Comunes</h2>
+                <button onclick="closeModal()" class="text-3xl">&times;</button>
+            </div>
+            <div class="space-y-2">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">¿Realizan redacción de contratos a medida? <span>+</span></div>
+                    <div class="faq-answer">Sí, nos especializamos en redactar contratos personalizados según la necesidad de cada cliente para garantizar su seguridad jurídica.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">¿Atienden en San Miguel del Monte? <span>+</span></div>
+                    <div class="faq-answer">Sí, tenemos atención coordinada tanto en La Plata como en San Miguel del Monte.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleAnswer(this)">¿Cómo pido una cita? <span>+</span></div>
+                    <div class="faq-answer">Puede enviarnos un WhatsApp directamente desde el botón verde de la web para coordinar día y horario.</div>
+                </div>
+            </div>
+            <button onclick="closeModal()" class="w-full mt-6 bg-[#720e1a] text-white py-3 font-bold uppercase">Cerrar</button>
+        </div>
+    </div>
 
     <script>
         function toggleMenu() {
@@ -371,15 +401,44 @@
         }
 
         function toggleCard(card) {
-            // Cierra las demás
             document.querySelectorAll('.area-card').forEach(c => {
-                if (c !== card) c.classList.remove('active');
+                if (c !== card) {
+                    c.classList.remove('active');
+                    c.querySelector('.area-details').style.display = 'none';
+                }
             });
-            // Abre la actual
-            card.classList.toggle('active');
+            const details = card.querySelector('.area-details');
+            if (card.classList.contains('active')) {
+                card.classList.remove('active');
+                details.style.display = 'none';
+            } else {
+                card.classList.add('active');
+                details.style.display = 'block';
+            }
+        }
+
+        function openModal() {
+            document.getElementById('faqModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('faqModal').style.display = 'none';
+        }
+
+        function toggleAnswer(element) {
+            const answer = element.nextElementSibling;
+            const span = element.querySelector('span');
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                span.innerText = '+';
+            } else {
+                answer.style.display = 'block';
+                span.innerText = '-';
+            }
         }
     </script>
 </body>
 </html>
+
 
 
