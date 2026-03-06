@@ -22,7 +22,6 @@
             font-family: 'Playfair Display', serif;
         }
         
-        /* Efecto Hero */
         .hero-section {
             position: relative;
             min-height: 90vh;
@@ -49,7 +48,6 @@
             to { transform: scale(1.2); }
         }
 
-        /* Menu Lateral */
         .side-menu {
             position: fixed;
             top: 0;
@@ -64,7 +62,6 @@
         }
         .side-menu.active { right: 0; }
 
-        /* Tarjetas de Áreas Practicadas - Uniformidad */
         .area-card {
             border: 1px solid #e5e7eb;
             transition: all 0.3s ease;
@@ -85,13 +82,12 @@
             transition: max-height 0.5s ease;
         }
         .area-card.active .area-details {
-            max-height: 800px; /* Suficiente para el contenido */
+            max-height: 800px;
         }
         .area-card.active .chevron-icon {
             transform: rotate(180deg);
         }
 
-        /* Botón WhatsApp Flotante */
         .whatsapp-btn {
             position: fixed;
             bottom: 25px;
@@ -123,7 +119,6 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- Header -->
     <header class="bg-white border-b-4 border-[#800020] py-3 px-6 md:px-12 fixed w-full top-0 z-50 flex justify-between items-center shadow-md">
         <div class="flex items-center gap-4">
             <div class="w-12 h-12 bg-[#800020] rounded-sm flex items-center justify-center text-white font-bold text-xl">GF</div>
@@ -137,12 +132,11 @@
         </button>
     </header>
 
-    <!-- Side Menu -->
     <div id="overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/50 z-[999] hidden backdrop-blur-sm"></div>
     <nav id="sideMenu" class="side-menu p-10 flex flex-col gap-8 text-white">
         <div class="flex justify-between items-center mb-4">
             <span class="font-bold tracking-widest border-b-2 border-white/30 pb-1">MENÚ</span>
-            <button onclick="toggleMenu()" class="text-4xl">&times;</button>
+            <button onclick="toggleMenu()" class="text-4xl">×</button>
         </div>
         <a href="#inicio" onclick="toggleMenu()" class="flex items-center gap-4 hover:translate-x-2 transition-transform uppercase text-sm tracking-widest"><i class="fas fa-home w-5"></i> Inicio</a>
         <a href="#equipo" onclick="toggleMenu()" class="flex items-center gap-4 hover:translate-x-2 transition-transform uppercase text-sm tracking-widest"><i class="fas fa-user-tie w-5"></i> Equipo</a>
@@ -151,7 +145,6 @@
         <a href="#contacto" onclick="toggleMenu()" class="flex items-center gap-4 hover:translate-x-2 transition-transform uppercase text-sm tracking-widest"><i class="fas fa-phone w-5"></i> Contacto</a>
     </nav>
 
-    <!-- Hero Section -->
     <section id="inicio" class="hero-section">
         <div class="themis-bg"></div>
         <div class="relative z-10 max-w-5xl mx-auto text-center px-6">
@@ -169,15 +162,13 @@
         </div>
     </section>
 
-    <!-- Nuestro Equipo -->
     <section id="equipo" class="py-24 bg-gray-50 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-5xl font-bold text-center text-[#800020] mb-16 uppercase tracking-widest">Nuestro Equipo</h2>
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 flex justify-center">
                     <div class="image-frame max-w-sm">
-                        <!-- Imagen actualizada del Dr. Maximiliano Gigena -->
-                        <img src="https://api.claudevideo.com/v1/files/uploaded/1000140190.jpg" alt="Dr. Maximiliano Gigena" class="w-full rounded-sm shadow-inner">
+                        <img src="FB_IMG_1772776839340.jpg" alt="Dr. Maximiliano Gigena" class="w-full rounded-sm shadow-inner">
                     </div>
                 </div>
                 <div class="w-full lg:w-1/2 text-center lg:text-left">
@@ -196,7 +187,6 @@
         </div>
     </section>
 
-    <!-- Áreas Practicadas -->
     <section id="areas" class="py-24 bg-white px-6">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
@@ -204,10 +194,7 @@
                 <p class="text-gray-500 uppercase text-xs tracking-[0.3em]">Haga clic en un área para ver detalles</p>
             </div>
             
-            <!-- Grid Uniforme -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-                
-                <!-- Familia -->
                 <div class="area-card p-8" onclick="this.classList.toggle('active')">
                     <div class="flex justify-between items-start mb-6">
                         <i class="fas fa-users text-4xl text-[#800020]"></i>
@@ -224,7 +211,6 @@
                     </div>
                 </div>
 
-                <!-- Sucesiones -->
                 <div class="area-card p-8" onclick="this.classList.toggle('active')">
                     <div class="flex justify-between items-start mb-6">
                         <i class="fas fa-scroll text-4xl text-[#800020]"></i>
@@ -241,7 +227,6 @@
                     </div>
                 </div>
 
-                <!-- Laboral -->
                 <div class="area-card p-8" onclick="this.classList.toggle('active')">
                     <div class="flex justify-between items-start mb-6">
                         <i class="fas fa-briefcase text-4xl text-[#800020]"></i>
@@ -257,60 +242,10 @@
                         <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Intercambio telegráfico</p>
                     </div>
                 </div>
-
-                <!-- Accidentes -->
-                <div class="area-card p-8" onclick="this.classList.toggle('active')">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fas fa-car-crash text-4xl text-[#800020]"></i>
-                        <i class="fas fa-chevron-down chevron-icon text-gray-400 transition-transform"></i>
-                    </div>
-                    <h3 class="text-xl font-bold uppercase mb-3 tracking-tight">Accidentes de Tránsito</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Reclamos estratégicos para obtener la máxima indemnización posible.</p>
-                    <div class="area-details text-gray-600 space-y-2 text-sm border-t mt-6 pt-6">
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Daños y Perjuicios</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Lesiones y secuelas</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Mediaciones prejudiciales</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Reclamos ante aseguradoras</p>
-                    </div>
-                </div>
-
-                <!-- Salud -->
-                <div class="area-card p-8" onclick="this.classList.toggle('active')">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fas fa-heartbeat text-4xl text-[#800020]"></i>
-                        <i class="fas fa-chevron-down chevron-icon text-gray-400 transition-transform"></i>
-                    </div>
-                    <h3 class="text-xl font-bold uppercase mb-3 tracking-tight">Amparo por Salud</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Protección jurídica inmediata contra incumplimientos de prepagas.</p>
-                    <div class="area-details text-gray-600 space-y-2 text-sm border-t mt-6 pt-6">
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Medicamentos de alto costo</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Tratamientos de discapacidad</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Fertilización asistida</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Amparos urgentes</p>
-                    </div>
-                </div>
-
-                <!-- Reales -->
-                <div class="area-card p-8" onclick="this.classList.toggle('active')">
-                    <div class="flex justify-between items-start mb-6">
-                        <i class="fas fa-home text-4xl text-[#800020]"></i>
-                        <i class="fas fa-chevron-down chevron-icon text-gray-400 transition-transform"></i>
-                    </div>
-                    <h3 class="text-xl font-bold uppercase mb-3 tracking-tight">Derechos Reales</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">Seguridad y regularización de su patrimonio inmobiliario.</p>
-                    <div class="area-details text-gray-600 space-y-2 text-sm border-t mt-6 pt-6">
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Juicios de usucapión</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Desalojos</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>Escrituraciones</p>
-                        <p><i class="fas fa-check text-[#800020] mr-2 text-[10px]"></i>División de condominios</p>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Opiniones -->
     <section id="opiniones" class="py-24 bg-gray-50 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-5xl font-bold text-center text-[#800020] mb-16 uppercase tracking-widest">Opiniones</h2>
@@ -334,7 +269,6 @@
         </div>
     </section>
 
-    <!-- Contacto -->
     <footer id="contacto" class="bg-black text-white py-24 px-6">
         <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div class="space-y-10">
@@ -355,15 +289,14 @@
             </div>
 
             <div class="w-full h-[450px] rounded-sm overflow-hidden shadow-2xl grayscale hover:grayscale-0 transition duration-700">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104712.55173167448!2d-57.9947844!3d-34.9034267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62b1f00e493%3A0x3e01f6540d9d3753!2sLa%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1700000000000!5m2!1ses!2sar" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104711.1232811776!2d-58.01889415!3d-34.9205233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e62b1f00e43d%3A0x840e932f441f5a95!2sLa%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1709800000000!5m2!1ses!2sar" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
         <div class="mt-24 text-center text-gray-600 text-[10px] tracking-widest uppercase">
-            &copy; 2024 Estudio Jurídico Gigena Fernández y Asociados.
+            © 2026 Estudio Jurídico Gigena Fernández y Asociados.
         </div>
     </footer>
 
-    <!-- Botón WhatsApp -->
     <a href="https://wa.me/542216261845" target="_blank" class="whatsapp-btn">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -377,4 +310,3 @@
     </script>
 </body>
 </html>
-
